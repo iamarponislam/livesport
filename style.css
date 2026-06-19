@@ -15,12 +15,30 @@ body {
     padding-bottom: 80px;
 }
 
-/* নতুন লোগো স্টাইল */
+/* হেডার বারটি স্ক্রিনের ওপরে ফিক্সড রাখার স্টাইল */
 .player-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 50px;
+    padding: 20px 50px;
+    
+    /* এই ৩টি লাইন স্ক্রল করার সময় হেডারকে এক জায়গায় ধরে রাখবে */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* যাতে মিডিয়া প্লেয়ার এর ওপর দিয়ে না উঠে যায় */
+    
+    background-color: #0f0f16; /* স্ক্রল করার সময় পেছনের কনটেন্ট ঢাকার জন্য সলিড ব্যাকগ্রাউন্ড */
+}
+
+/* ডিভাইডার লাইনের স্টাইলও কিছুটা ফিক্সড করা হলো */
+.header-line {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #313244, transparent);
+    margin-bottom: 30px;
+    position: sticky;
+    top: 75px; /* ঠিক হেডারের নিচে ফিক্সড থাকবে */
+    z-index: 999;
 }
 
 .header-left {
