@@ -101,34 +101,18 @@
         </div>
     </div>
 
-    <!-- Video.js Player Script & Logic -->
+    <!-- Player Script Logic -->
     <script src="https://vjs.zencdn.net/7.20.3/video.js"></script>
     <script>
         const player = videojs('my-video');
 
-        // একটি ফ্রি কর্স প্রক্সি (CORS Proxy), যা ব্রাউজারের ব্লক করা আটকে দেবে
-        const proxy = "https://cors-anywhere.herokuapp.com/";
-
-        // ১. আপনার খুঁজে পাওয়া আসল ওয়ার্কিং লিঙ্কটি এখানে দিন (ডেমো লিঙ্কটি বদলে দিন)
-        const myRealLink = "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8";
-
-        // প্রক্সি সহ ডিফল্টভাবে প্রথমবার পেজ লোড হলে যা প্লে হবে
-        player.src({ 
-            src: proxy + myRealLink, 
-            type: 'application/x-mpegURL' 
-        });
-
-        // অটোমেটিক প্লে করার চেষ্টা করা
-        player.ready(function() {
-            player.play().catch(function(error) {
-                console.log("অটো-প্লে ব্রাউজার ব্লক করেছে, ইউজারের ক্লিক লাগবে।");
-            });
-        });
+        // প্রথমবার পেজ ওপেন হলে অটোমেটিক যে চ্যানেলটি প্লে হবে তার লিংক
+        const defaultStream = "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8";
+        player.src({ src: defaultStream, type: 'application/x-mpegURL' });
 
         function playStream(url, channelName) {
-            // চ্যানেল লিস্টে ক্লিক করলেও প্রক্সি হয়ে প্লে হবে যাতে এরর না আসে
             player.src({
-                src: proxy + url,
+                src: url,
                 type: 'application/x-mpegURL'
             });
             player.play();
