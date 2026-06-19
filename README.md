@@ -1,7 +1,6 @@
 > [!IMPORTANT]
-> ### For Watching Live FIFA World Cup On Desktop or Phone Visit
-> ### (ডেস্কটপ বা ফোনে সরাসরি ফিফা বিশ্বকাপ দেখার জন্য ভিজিট করুন)
-> ## 🔗 https://iamarponislam.github.io/livesport/
+> For Watching Live FIFA World Cup On Desktop or Phone Visit - (ডেস্কটপ বা ফোনে সরাসরি ফিফা বিশ্বকাপ দেখার জন্য ভিজিট করুন)
+> 🔗 https://iamarponislam.github.io/livesport/
 
 # 📺 Live Sports - Streaming Web App
 
