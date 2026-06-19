@@ -111,20 +111,22 @@
         player.src({ src: defaultStream, type: 'application/x-mpegURL' });
 
         function playStream(url, channelName) {
-            // ১. প্লেয়ারে নতুন লিংক লোড করা
-            player.src({
-                src: proxy + url,
-                type: 'application/x-mpegURL'
-            });
-            
-            // ২. অটোমেটিক প্লে করা
-            player.play();
-            
-            // ৩. নিখুঁতভাবে স্ক্রিনটি টেনে একদম উপরে প্লেয়ারে নিয়ে যাওয়া
+            // ১. ক্লিক করার সাথে সাথে সবার আগে স্ক্রিন স্মুথলি উপরে চলে যাবে
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+
+            // ২. এবার প্লেয়ারে নতুন লিংক লোড হবে (ভিডিও লোড হতে ১-২ সেকেন্ড লাগলেও স্ক্রিন আটকে থাকবে না)
+            try {
+                player.src({
+                    src: url, // যদি প্রক্সিতে সমস্যা করে, তবে শুধু 'url' দিয়ে ট্রাই করুন
+                    type: 'application/x-mpegURL'
+                });
+                player.play();
+            } catch (error) {
+                console.log("Stream load error: ", error);
+            }
         }
     </script>
 </body>
