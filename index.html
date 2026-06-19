@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Sport - Stream</title>
+    <!-- Video.js Player CSS -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    <!-- FontAwesome Font (আইকন লোগোর জন্য) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ১ নম্বর ভিউ: আধুনিক আইকন লোগোসহ মেইন প্লেয়ার হেডার -->
+    <header class="player-header" id="top-player">
+        <div class="header-left">
+            <!-- এখানে একটি প্রিমিয়াম স্পোর্টস টিভি আইকন লোগো যোগ করা হয়েছে -->
+            <div class="logo-wrapper">
+                <i class="fa-solid fa-circle-play logo-icon"></i>
+            </div>
+            <span class="logo-text">Live Sport</span>
+        </div>
+        <div class="header-right">
+            <span class="on-air"><span class="dot"></span> ON AIR</span>
+        </div>
+    </header>
+
+    <hr class="header-line">
+
+    <!-- ভিডিও প্লেয়ার কন্টেইনার -->
+    <div class="player-container">
+        <video id="my-video" class="video-js vjs-big-play-centered vjs-theme-city" controls preload="auto" width="900" height="500">
+            <p class="vjs-no-js">To view this video please enable JavaScript</p>
+        </video>
+    </div>
+
+    <!-- মাঝখানের ডিভাইডার -->
+    <div class="section-divider"></div>
+
+    <!-- ২ নম্বর ভিউ: আপনার স্কেচ অনুযায়ী হুবহু ৬টি চ্যানেল বক্স -->
+    <div class="container">
+        <h1 class="main-title">CHANAL LIST</h1>
+        
+        <div class="channel-grid">
+            <!-- চ্যানেল ১ (আপনার ১ম m3u8 লিংক এখানে বসাবেন) -->
+            <div class="channel-card" onclick="playStream('https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8', 'Channel 1')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>D Sports HLS</h3>
+                <p>Server 1</p>
+            </div>
+
+            <!-- চ্যানেল ২ -->
+            <div class="channel-card" onclick="playStream('https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8', 'Channel 2')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>CAZE TV</h3>
+                <p>Server 2</p>
+            </div>
+
+            <!-- েনেল ৩ -->
+            <div class="channel-card" onclick="playStream('https://live.thebosstv.com:30443/dwlive/Somoy-TV/chunks.m3u8', 'Channel 3')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>Somoy TV</h3>
+                <p>Server 3</p>
+            </div>
+
+            <!-- চ্যানেল ৪ -->
+            <div class="channel-card" onclick="playStream('https://1nyaler.streamhostingcdn.top/stream/23/index.m3u8', 'Channel 4')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>Bein Sports</h3>
+                <p>Server 4</p>
+            </div>
+
+            <!-- চ্যানেল ৫ -->
+            <div class="channel-card" onclick="playStream('https://1nyaler.streamhostingcdn.top/stream/32/index.m3u8', 'Channel 5')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>Win Sports</h3>
+                <p>Server 5</p>
+            </div>
+
+            <!-- চ্যানেল ৬ -->
+            <div class="channel-card" onclick="playStream('https://1nyaler.streamhostingcdn.top/stream/26/index.m3u8', 'Channel 6')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>FOX English</h3>
+                <p>Server 6</p>
+            </div>
+
+            <!-- চ্যানেল 7 -->
+            <div class="channel-card" onclick="playStream('https://1nyaler.streamhostingcdn.top/stream/94/index.m3u8', 'Channel 7')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>DAZN FIFA</h3>
+                <p>Server 7</p>
+            </div>
+
+            <!-- চ্যানেল 8 -->
+            <div class="channel-card" onclick="playStream('http://znty.dyndns.org:5010/hls/eleven1.m3u8', 'Channel 8')">
+                <div class="card-icon"><i class="fa-solid fa-tv"></i></div>
+                <h3>DAZN 1</h3>
+                <p>Server 8</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Player Script Logic -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.js"></script>
+    <script>
+        const player = videojs('my-video');
+
+        // প্রথমবার পেজ ওপেন হলে অটোমেটিক যে চ্যানেলটি প্লে হবে তার লিংক
+        const defaultStream = "https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8";
+        player.src({ src: defaultStream, type: 'application/x-mpegURL' });
+
+        function playStream(url, channelName) {
+            player.src({
+                src: url,
+                type: 'application/x-mpegURL'
+            });
+            player.play();
+            document.getElementById('top-player').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
