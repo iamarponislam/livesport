@@ -111,12 +111,20 @@
         player.src({ src: defaultStream, type: 'application/x-mpegURL' });
 
         function playStream(url, channelName) {
+            // ১. প্লেয়ারে নতুন লিংক লোড করা
             player.src({
-                src: url,
+                src: proxy + url,
                 type: 'application/x-mpegURL'
             });
+            
+            // ২. অটোমেটিক প্লে করা
             player.play();
-            document.getElementById('top-player').scrollIntoView({ behavior: 'smooth' });
+            
+            // ৩. নিখুঁতভাবে স্ক্রিনটি টেনে একদম উপরে প্লেয়ারে নিয়ে যাওয়া
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     </script>
 </body>
