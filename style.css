@@ -1,0 +1,159 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f0f16;
+    color: #cdd6f4;
+    padding-bottom: 80px;
+}
+
+/* নতুন লোগো স্টাইল */
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon {
+    font-size: 32px;
+    color: #89b4fa; /* লোগোর আধুনিক নীল রঙ */
+    filter: drop-shadow(0 0 8px rgba(137, 180, 250, 0.5));
+}
+
+.logo-text {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.on-air {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #f38ba8; /* লাইভ রেড ডট */
+    border-radius: 50%;
+    display: inline-block;
+    animation: blink 1.5s infinite; /* ওন এয়ার ডটটি জ্বলবে-নিভবে */
+}
+
+@keyframes blink {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+.header-line {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #313244, transparent);
+    margin-bottom: 30px;
+}
+
+/* ভিডিও প্লেয়ার সেটিংস */
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.video-js {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    border: 1px solid #1e1e2e;
+}
+
+.section-divider {
+    height: 100px;
+}
+
+/* ৬টি চ্যানেল গ্রিড লেআউট */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main-title {
+    text-align: center;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+    color: #f5e0dc;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.channel-grid {
+    display: grid;
+    /* ৩ কলামের গ্রিড, যা স্ক্রিন ছোট হলে অটো ২ বা ১ কলাম হয়ে যাবে */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+}
+
+.channel-card {
+    background: #1e1e2e;
+    border: 1px solid #2b2b3c;
+    border-radius: 16px;
+    padding: 40px 20px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.card-icon {
+    font-size: 28px;
+    color: #a6e3a1; /* বক্সের ভেতরের কাস্টম টিভি আইকন */
+    margin-bottom: 15px;
+}
+
+.channel-card:hover {
+    transform: translateY(-8px);
+    border-color: #89b4fa;
+    background: #242437;
+    box-shadow: 0 12px 25px rgba(137, 180, 250, 0.15);
+}
+
+.channel-card h3 {
+    font-size: 20px;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.channel-card p {
+    font-size: 13px;
+    color: #a6adc8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
