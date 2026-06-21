@@ -103,33 +103,31 @@
     </div>
 
 <!-- Player Script Logic -->
-    <script src="https://vjs.zencdn.net/7.20.3/video.js"></script>
+    <!-- ১. হিলিং লাইব্রেরি স্ক্রিপ্ট যোগ করুন (head বা body ট্যাগের ভেতর) -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<!-- ২. আপনার ভিডিও ট্যাগটি এভাবে সাজান -->
+    <video id="videoPlayer" controls autoplay style="width:100%; max-width:640px; background:#000;"></video>
+
+<!-- ৩. জাভাস্ক্রিপ্ট কোড দিয়ে কন্টেন্ট লোড করুন -->
     <script>
-        // ১. প্লেয়ার ইনিশিয়েট করা
-        const player = videojs('my-video');
+      var video = document.getElementById('videoPlayer');
+      var videoSrc = 'https://dfr80qz435crc.cloudfront.net/MNOP/Amagi/Caze/Caze_TV_BR/Caze_TV.m3u8';
 
-        // ২. প্রথমবার পেজ ওপেন হলে অটোমেটিক যে চ্যানেলটি প্লে হবে (এখানে আপনার মেইন লিংক দিন)
-        const defaultStream = "https://1nyaler.streamhostingcdn.top/stream/106/index.m3u8";
-        player.src({ src: defaultStream, type: 'application/x-mpegURL' });
-
-        // ৩. চ্যানেল চেঞ্জ এবং অটো স্ক্রল ফাংশন
-        function playStream(url, channelName) {
-            // সবার আগে স্ক্রিন ফোর্সড স্ক্রল হয়ে একদম উপরে চলে যাবে
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-
-            // প্লেয়ারে নতুন লিংক লোড করে প্লে করা (কোনো প্রক্সি ঝামেলা ছাড়া ডিরেক্ট)
-            player.src({
-                src: url,
-                type: 'application/x-mpegURL'
-            });
-            
-            player.play().catch(function(error) {
-                console.log("অটো-প্লে ব্লক হয়েছে, প্লে বাটনে ক্লিক করুন।");
-            });
-        }
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          video.play();
+        });
+      }
+      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.addEventListener('loadedmetadata', function() {
+          video.play();
+        });
+      }
     </script>
 </body>
 </html>
